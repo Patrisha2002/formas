@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Publiskā datubāze</title>
+	<link rel="stylesheet" href="main.css">
+</head>
+<body class="kabinet">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="block-return-page">
+					<a href="index.html"><svg baseProfile="tiny" height="24px" version="1.2" viewBox="0 0 24 24" width="24px" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><g id="Layer_1"><path d="M17,11H9.414l2.293-2.293c0.391-0.391,0.391-1.023,0-1.414s-1.023-0.391-1.414,0L5.586,12l4.707,4.707   C10.488,16.902,10.744,17,11,17s0.512-0.098,0.707-0.293c0.391-0.391,0.391-1.023,0-1.414L9.414,13H17c0.552,0,1-0.448,1-1   S17.552,11,17,11z"/></g></svg>Atpakaļ uz sākumlapu</a>
+				</div>
+				<h1>
+					Publiskā datubāze
+				</h1>
+				<p class="bottom-line-blue">
+					Šajā datubāze Tu vari apskatīt pieejamās vielas un aprīkojumu
+				</p>
+				<div class="block-form-search">
+					<form class="form-search" action="kabinet.html" method="POST">
+						<div class="group">
+							<div class="field block-search">
+								<input required name="search" type="text" placeholder="Search">
+							</div>
+							<div class="field">
+								<a class="btn btn-blue" href="#" data-id="inventars">Rādīt visu</a>
+							</div>
+							<div class="field">
+								<a class="btn btn-white" href="#" data-id="vielas">Rādīt vielas</a>
+							</div>
+							<div class="field">
+								<a class="btn btn-white" href="#">Rādīt aprīkojumu</a>
+							</div>
+						</div>
+					</form>
+				</div>
+				<!-- table -->
+				<div class="table-block">
+					<table cellspacing="0" cellpadding="0">
+						<thead>
+							<tr>
+								<th>
+									ID
+								</th>
+								<th>
+									Nosaukums
+								</th>
+								<th>
+									Tips
+								</th>
+								<th>
+									Apakštips
+								</th>
+								<th>
+									Skaits
+								</th>
+								<th>
+									Svars
+								</th>
+								<th>
+									Komentāri
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- <tr>
+								<td>
+									KL1042724
+								</td>
+								<td>
+									<strong>Katalīzators</strong>
+								</td>
+								<td>
+									Aprīkojums
+								</td>
+								<td>
+									Trauks
+								</td>
+								<td>
+									23
+								</td>
+								<td>
+									
+								</td>
+								<td>
+									Daži komentāri
+								</td>
+							</tr>
+							<tr>
+								<td>
+									KL1042723
+								</td>
+								<td>
+									<strong>Birete</strong>
+								</td>
+								<td>
+									Aprīkojums
+								</td>
+								<td>
+									Trauks
+								</td>
+								<td>
+									20
+								</td>
+								<td>
+									
+								</td>
+								<td>
+									Daži komentāri
+								</td>
+							</tr>
+							<tr>
+								<td>
+									KL1042742
+								</td>
+								<td>
+									<strong>HCL</strong>
+								</td>
+								<td>
+									Viela
+								</td>
+								<td>
+									Skābe
+								</td>
+								<td>
+									19
+								</td>
+								<td>
+									40
+								</td>
+								<td>
+									Daži komentāri
+								</td>
+							</tr>
+							<tr>
+								<td>
+									KL1042724
+								</td>
+								<td>
+									<strong>Kolba</strong>
+								</td>
+								<td>
+									Aprīkojums
+								</td>
+								<td>
+									Trauks
+								</td>
+								<td>
+									20
+								</td>
+								<td>
+									
+								</td>
+								<td>
+									Daži komentāri
+								</td>
+							</tr>
+							<tr>
+								<td>
+									KL1042534
+								</td>
+								<td>
+									<strong>Fe</strong>
+								</td>
+								<td>
+									Viela
+								</td>
+								<td>
+									Metāls
+								</td>
+								<td>
+									48
+								</td>
+								<td>
+									10
+								</td>
+								<td>
+									Daži komentāri
+								</td>
+							</tr>
+							<tr>
+								<td>
+									KL1442721
+								</td>
+								<td>
+									<strong>Na</strong>
+								</td>
+								<td>
+									Viela
+								</td>
+								<td>
+									Metāls
+								</td>
+								<td>
+									20
+								</td>
+								<td>
+									20
+								</td>
+								<td>
+									Daži komentāri
+								</td>
+							</tr> -->
+						</tbody>
+					</table>
+				</div>
+				<!-- /table -->
+				<div class="block_bottom-btn">
+					<button type="button" id="getAllResult" data-id="inventars" class="btn btn-danger">
+					Ziņot par kļūdu</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="data/inventars.json"></script>
+	<script src="data/vielas.json"></script>
+	<script>
+		const inventarsJSON = inventar;
+		const vielasJSON = viela;
+
+		const btnDataForm = document.querySelectorAll('.block-form-search .form-search .btn');
+		btnDataForm.forEach(function(item) {
+			item.addEventListener('click', function(e) {
+				e.preventDefault();
+				const _this = e.target;
+				const getData = _this.getAttribute('data-id');
+				showData(getData);
+				document.querySelector('.block-form-search .form-search .btn-blue').classList.add('btn-white');
+				document.querySelector('.block-form-search .form-search .btn-blue').classList.remove('btn-blue');
+				_this.classList.remove('btn-white');
+				_this.classList.add('btn-blue');
+				document.getElementById('getAllResult').setAttribute('data-id', getData);
+			});
+		});
+
+		const table = document.querySelector('.table-block table');
+		const tbody = document.querySelector('.table-block table tbody');
+		const tr = document.createElement('tr');
+		const td = document.createElement('td');
+		let result = '';
+		const setResult = 6;
+		function showData(getData, clearArr) {
+
+			let _getData = getData;
+			if(_getData == 'vielas') _getData = vielasJSON;
+			if(_getData == 'inventars') _getData = inventarsJSON;
+			for(let item in _getData) {
+				if(setResult == item) {
+					break;
+				} else {
+					result += '<tr><td>' + _getData[item]['id'] + '</td>' + '<td>' + _getData[item]['nosaukums'] + '</td>' + '<td>' + _getData[item]['tips'] + '</td>' + '<td>' + _getData[item]['apakstips'] + '</td>' + '<td>' + _getData[item]['skaits'] + '</td>' + '<td>' + (_getData[item]['svars'] == undefined ? '' : _getData[item]['svars']) + '</td>' + '<td>' + _getData[item]['komentari'] + '</td></tr>';
+				}
+			}
+			tbody.innerHTML = result;
+			result = '';
+			function getDataList(id, clear = false) {
+				let arrayRes = [];
+				if(clear == true) return _getData = [];
+				for(let item in _getData) {
+					if(_getData[item] !== 'id') {
+						if(setResult <= item) {
+							arrayRes.push([
+								_getData[item]['id'],
+								_getData[item]['nosaukums'],
+								_getData[item]['tips'],
+								_getData[item]['apakstips'],
+								_getData[item]['skaits'],
+								_getData[item]['svars'],
+								_getData[item]['komentari']
+							]);
+						}
+					}
+				}
+				for(let i = 0; i <= arrayRes.length; i++) {
+					let tr = document.createElement('tr');
+					if(arrayRes[i] == undefined) return arrayRes = [];
+					for(let y = 0; y <= arrayRes[i].length; y++) {
+						let td = document.createElement('td');
+						td.textContent = arrayRes[i][y];
+						tr.appendChild(td);
+					}
+					tbody.appendChild(tr);
+				}
+			}
+			document.getElementById('getAllResult').addEventListener('click', function(e) {
+				let attrDataId = e.target.getAttribute('data-id');
+				getDataList(attrDataId);
+				getDataList(attrDataId, true);
+			});
+		}
+		showData(getData = 'inventars');
+		// function showData(getData) {
+		// 	for(let item in vielasJSON) {
+		// 		if(setResult == item) {
+		// 			break;
+		// 		} else {
+		// 			result += '<tr><td>' + vielasJSON[item]['id'] + '</td>' + '<td>' + vielasJSON[item]['nosaukums'] + '</td>' + '<td>' + vielasJSON[item]['tips'] + '</td>' + '<td>' + vielasJSON[item]['apakstips'] + '</td>' + '<td>' + vielasJSON[item]['skaits'] + '</td>' + '<td>' + (vielasJSON[item]['svars'] == undefined ? '' : vielasJSON[item]['svars']) + '</td>' + '<td>' + vielasJSON[item]['komentari'] + '</td></tr>';
+		// 		}
+		// 	}
+		// 	tbody.innerHTML = result;
+		// 	result = '';
+		// 	function createTd(items, content) {
+		// 		for(let i = 0; i <= items; i++) {
+		// 			document.createElement('td');
+		// 		}
+		// 	}
+		// 	let arrayRes = [];
+		// 	document.getElementById('getAllResult').addEventListener('click', function(e) {
+		// 		this.remove();
+		// 		for(let item in vielasJSON) {
+		// 			if(vielasJSON[item] !== 'id') {
+		// 				if(setResult <= item) {
+		// 					arrayRes.push([
+		// 						vielasJSON[item]['id'],
+		// 						vielasJSON[item]['nosaukums'],
+		// 						vielasJSON[item]['tips'],
+		// 						vielasJSON[item]['apakstips'],
+		// 						vielasJSON[item]['skaits'],
+		// 						vielasJSON[item]['svars'],
+		// 						vielasJSON[item]['komentari']
+		// 					]);
+		// 				}
+		// 			}
+		// 		}
+		// 		for(let i = 0; i <= arrayRes.length; i++) {
+		// 			let tr = document.createElement('tr');
+		// 			for(let y = 0; y < arrayRes[i].length; y++) {
+		// 				let td = document.createElement('td');
+		// 				td.textContent = arrayRes[i][y];
+		// 				tr.appendChild(td);
+		// 			}
+		// 			tbody.appendChild(tr);
+		// 		}
+		// 	});
+		// }
+	</script>
+</body>
+</html>
